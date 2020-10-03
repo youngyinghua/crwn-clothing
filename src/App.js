@@ -5,18 +5,14 @@ import HomePage from "./pages/homepages/homepage.component";
 
 import ShopPage from "./pages/shop/shop.component";
 import "./App.css";
-// const ShopPage = (props) => (
-//   <div>
-//     <h1>{`${props.match.params.category.toUpperCase()} PAGE`}</h1>
-//   </div>
-// );
+import Header from "./components/header/header.component";
 
 function App() {
   return (
     <div>
+      <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        {/* <Route exact path="/shop/:category" component={} /> */}
         <Route exact path="/shop" component={ShopPage} />
       </Switch>
     </div>
