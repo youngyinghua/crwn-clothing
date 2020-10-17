@@ -8,7 +8,7 @@ const CollectionPage = ({ match, collection }) => (
   <div className="collection">
     <h2 className="collection-title"> {match.params.collectionId}</h2>
     <div className="collection-items">
-      {collection[0].items.map((item) => (
+      {collection.items.map((item) => (
         <CollectionItem key={item.id} item={item} />
       ))}
     </div>
