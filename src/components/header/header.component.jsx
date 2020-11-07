@@ -1,4 +1,3 @@
-import { auth } from "../../firebase/firebase.utils";
 import React from "react";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { connect } from "react-redux";
@@ -12,8 +11,9 @@ import {
   OptionContainer,
   OptionsContainer,
 } from "./header.styles";
+import { signOutStart } from "../../redux/user/user.action";
 
-const Header = ({ currentUser, hidden }) => (
+const Header = ({ currentUser, hidden, signOutStart }) => (
   <HeaderContainer>
     <LogoContainer to="/">
       <Logo className="logo" />
@@ -22,7 +22,7 @@ const Header = ({ currentUser, hidden }) => (
       <OptionContainer to="/shop">SHOP</OptionContainer>
       <OptionContainer to="/contact">CONTACT</OptionContainer>
       {currentUser ? (
-        <OptionContainer as="div" onClick={() => auth.signOut()}>
+        <OptionContainer as="div" onClick={signOutStart}>
           SIGN OUT
         </OptionContainer>
       ) : (
@@ -39,4 +39,7 @@ const mapStateToProps = (state) => ({
   hidden: selectCartHidden(state),
 });
 
-export default connect(mapStateToProps)(Header);
+const mapDispatch = (dispatch) => ({
+  signOutStart: () => dispatch(signOutStart()),
+});
+export default connect(mapStateToProps, mapDispatch)(Header);

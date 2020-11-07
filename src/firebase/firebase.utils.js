@@ -38,6 +38,15 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubcrible = auth.onAuthStateChanged((userAuth) => {
+      unsubcrible();
+      resolve(userAuth);
+    }, reject);
+  });
+};
+
 export const getCollectionData = (snapShot) => {
   let collections = {};
   snapShot.forEach((doc) => {
@@ -64,8 +73,8 @@ export const addCollectionAndDocuments = async (
   return await batch.commit();
 };
 
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: "select_account" });
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: "select_account" });
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 export default firebase;

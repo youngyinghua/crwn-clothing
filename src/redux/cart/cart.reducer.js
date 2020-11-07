@@ -38,11 +38,11 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cartItems: decreaseQuantityToCartItem(state.cartItems, action.payload),
       };
-    case "RECOVER_CARTITEMS":
-      return {
-        ...state,
-        cartItems: action.payload,
-      };
+    // case "RECOVER_CARTITEMS":
+    //   return {
+    //     ...state,
+    //     cartItems: action.payload,
+    //   };
     default:
       return INITIAL_STATE;
   }
